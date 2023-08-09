@@ -32,7 +32,7 @@ function handleSymbol(symbol) {
       if (buffer.length === 1) {
         buffer = '0';
       } else {
-        buffer = buffer.toString(0, buffer.length - 1);
+        buffer = buffer.substring(0, buffer.length - 1);
       }
       break;
     case '+':
@@ -66,7 +66,7 @@ function flushOperation(intBuffer) {
   } else if (previousOperator === '−') {
     runningTotal -= intBuffer;
   } else if (previousOperator === '×') {
-    runningTotal *= intBuffer;
+    runningTotal *= intBuffer
   } else if (previousOperator === '÷') {
     runningTotal /= intBuffer;
   }
@@ -79,3 +79,11 @@ function handleNumber(numberString) {
     buffer += numberString;
   }
 }
+
+function init() {
+  document.querySelector('.calc-buttons').addEventListener('click', function (event) {
+    buttonClick(event.target.innerText);
+  })
+}
+
+init();
